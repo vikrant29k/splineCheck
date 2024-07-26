@@ -12,14 +12,68 @@
     default;
     .line {
       position: absolute;
-border: 2px solid black;
+// border: 2px solid black;
+
       left: 50%; /* Start from the center horizontally */
       top: 50%; /* Start from the center vertically */
-      height: 2px; /* Thickness of the line */
-      background-color: #ff0000; /* Color of the line */
+      height: 50px; /* Thickness of the line */
+      background-image: url('data:image/svg+xml,<svg width="273" height="48" viewBox="0 0 273 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 3C38.5 3 54.4526 40.5493 123.297 44.3679C186.519 47.8747 192.96 3.00007 270 3.00001" stroke="%23E66F25" stroke-width="5" stroke-linecap="square"/></svg>');
+      background-repeat: repeat-x;
       transform-origin: left; /* Rotate around the left end */
-      transition: width 0.1s; /* Smooth transition for width */
+      transition: width 1000ms; /* Smooth transition for width */
+      &:hover{
+        cursor:  url('data:image/svg+xml,<svg  viewBox="0 0 148 160" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M147.972 127.233C148.525 126.103 141.334 56.0494 90.4481 7.46366C86.9443 4.45059 78.8306 -0.55864 74.4057 3.509C68.8746 8.59355 77.1713 16.5028 79.3837 19.3276C81.5962 22.1523 98.7427 44.1854 100.402 49.2699C92.4741 36.6527 78.8306 16.5028 63.8965 5.20382C52.8343 -2.70548 44.5376 -1.01063 43.9845 6.33372C43.4314 13.6781 58.3654 25.5419 65.5559 35.1461C68.185 38.6577 71.2223 42.6964 74.0447 46.4423C60.9745 29.9418 41.581 8.95807 30.1566 8.59342C12.457 8.02847 21.8599 22.7172 25.1786 26.1069C28.4973 29.4966 60.5779 60.0039 65.0028 67.9132C60.7622 63.9585 49.405 56.5012 37.9002 58.309C23.5193 60.5688 12.4389 69.3602 1.39474 96.7256C-0.0115204 100.21 2.05847 107.686 9.13832 108.59C17.9881 109.719 20.2006 98.4205 21.3068 95.5957C22.4131 92.771 29.6035 83.1668 41.2189 83.1668C46.3813 83.5434 57.2592 87.6864 59.4716 101.245C62.2372 118.194 46.75 118.194 41.2189 116.499C35.6878 114.804 21.3068 106.895 13.5632 109.155C5.81966 111.414 6.92587 119.324 10.2446 122.713C13.5632 126.103 22.9662 138.532 50.0687 143.616C62.7903 146.003 71.6401 145.311 74.9588 144.746L83.8086 160L147.972 127.233Z" fill="%23FFCEBF"/><path d="M6.05504 87.2519C8.02853 87.8278 10.1148 91.9169 2.67192 103.666M7.7466 114.896C11.4116 116.912 18.2343 122.325 16.2044 127.854M20.4333 12.0944C23.5345 15.8378 33.6275 19.0054 39.0405 12.0944M44.9609 3.45557C48.0621 7.19905 56.8018 8.63885 61.0307 3.45557M73.7174 4.31945C76.8186 8.06293 83.8668 11.2305 88.0957 6.04721" stroke="black" stroke-opacity="0.14"/></svg>')
+            25 25,
+          auto;
+      }
   }
+  .radio-label {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+    border: 1px solid #ccc; /* Border for better visibility */
+    border-radius: 5px;
+    background: #fff;
+    transition: background-color 0.3s;
+}
+
+// .radio-label:hover {
+//     background-color: #e0e0e0; /* Change background color on hover */
+// }
+
+// .radio-input {
+//     display: none; /* Hide the default radio button */
+// }
+
+.hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    background-size: cover; /* Cover the area */
+    background-position: center; /* Center the image */
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.3s; /* Smooth transition */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+.overlay {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 200px;
+  height: 200px; /* Adjust the height as needed */
+  background-image: url('data:image/svg+xml, <svg viewBox="0 0 148 160" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M147.973 127.233C148.5 126.103 141.653 56.0494 93.1962 7.46366C89.8597 4.45059 82.1334 -0.55864 77.9198 3.509C72.6528 8.59355 80.5533 16.5028 82.6601 19.3276C84.767 22.1523 101.095 44.1854 102.675 49.2699C95.1254 36.6527 82.1334 16.5028 67.9125 5.20382C57.3784 -2.70548 49.4779 -1.01063 48.9512 6.33372C48.4245 13.6781 62.6455 25.5419 69.4926 35.1461C71.9961 38.6576 74.8883 42.6963 77.576 46.4422C65.1299 29.9417 46.6625 8.95807 35.7837 8.59342C18.9292 8.02847 27.8831 22.7172 31.0434 26.1069C34.2036 29.4966 64.7523 60.0039 68.9659 67.9132C64.9278 63.9585 56.7425 59.1561 49.5 53C44.7941 49 20 28 11.5 27C7.79265 26.5638 0.5 28 1 34.5C1.21693 37.3201 5.5 43.5 12.5 49C19.5 54.5 36.1808 68.6808 47.5 80C50.5 83 57.5 87 63.6989 101.245C70.5427 116.973 51.5847 118.194 46.3177 116.499C41.0507 114.804 27.3564 106.895 19.9826 109.155C12.6088 111.414 13.6622 119.324 16.8224 122.713C19.9826 126.103 28.9365 138.532 54.7449 143.616C66.8591 146.003 75.2863 145.311 78.4465 144.746L86.8738 160L147.973 127.233Z" fill="%23FFCEBF"/><path d="M20.5 31.5C19.5 40 8 40.5 1 33M14.4446 114.896C17.9346 116.912 24.4315 122.325 22.4985 127.854M26.5255 12.0943C29.4786 15.8378 39.0897 19.0053 44.2442 12.0943M49.8819 3.45551C52.835 7.19898 61.1575 8.63878 65.1844 3.45551M77.2653 4.31939C80.2184 8.06286 86.9301 11.2304 90.957 6.04714" stroke="black" stroke-opacity="0.14"/></svg>'); /* Replace with your image URL */
+  // background-size: ;
+  z-index: 2;
+  border: 2px solid black;
+  // pointer-events: none;
+}
+
+.radio-label:hover .hover-image {
+    opacity: 1; /* Show image on hover */
+    width: 200px;
+}
   .header {
     // width: 1vw;
     border: 2px solid black;
